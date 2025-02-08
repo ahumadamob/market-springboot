@@ -1,8 +1,8 @@
 package com.ahumadamob.market.service.jpa;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ahumadamob.market.entity.User;
@@ -16,15 +16,14 @@ public class UserServiceImplJpa implements IUserService{
 	private UserRepository r;
 
 	@Override
-	public List<User> getAll() {
-		return r.findAllByOrderByUsernameAsc();
+	public Page<User> getAll(Pageable pageable) {
+		return r.findAllByOrderByUsernameAsc(pageable);
 
 	}
 
 	@Override
 	public User getById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (id==null)?null:r.findById(id).orElse(null);
 	}
 
 	@Override
@@ -39,8 +38,7 @@ public class UserServiceImplJpa implements IUserService{
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
+		r.deleteById(id);		
 	}
 
 }

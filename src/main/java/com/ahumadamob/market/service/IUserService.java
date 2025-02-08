@@ -1,11 +1,12 @@
 package com.ahumadamob.market.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.ahumadamob.market.entity.User;
 
 public interface IUserService {
-	public List<User> getAll();
+	public Page<User> getAll(Pageable pageable);
 	public User getById(Long id);
 	public boolean existsById(Long id);
 	public User save(User user);
