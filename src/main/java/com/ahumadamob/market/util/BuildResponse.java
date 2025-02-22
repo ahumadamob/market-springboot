@@ -29,7 +29,11 @@ public class BuildResponse {
 		ResponseDTO<T> res = new ResponseDTO<>(HttpStatus.OK.value(), data);
 		res.addInfo(null, message);
 		return ResponseEntity.status(HttpStatus.OK).body(res);
-    }	
+    }
+	
+	public static<T> ResponseEntity<T> noContent() {
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+	}	
 	    
 	public static<T> ResponseEntity<ResponseDTO<T>> created(T data, String message) {        
 		ResponseDTO<T> res = new ResponseDTO<>(HttpStatus.CREATED.value(), data);
